@@ -68,12 +68,13 @@ ul{
     align-items: center;
     max-width: 80%;
     margin: 10px auto;
+    background-color:#e99678;
+    border: 1px #e99678;
 } 
 
 .btn {
     background-color: powderblue;
     border-radius: 5px;
-   
     padding: 5px 10px;
     outline: none;
     font-size: 20px;
