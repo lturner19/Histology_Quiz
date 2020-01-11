@@ -1,36 +1,43 @@
 var startButton = document.getElementById("start-btn");
 var introText = document.getElementById("welcome");
 var elQuestion = document.getElementById("question-container");
-var countDown = 75;
+var timeLeft = 75;
 var questionArray = [
     {
         question: "Commonly used data types do Not include:",
-        choice: ["strings", "booleans", "alerts", "numbers"]
+        choice: ["strings", "booleans", "alerts", "numbers"],
+        answer: "alerts"
     },
     {
         question: "The condition in an if/else statement is enclosed within _____",
-        choice: ["quotes", "curly brackets", "parentheses", "space brackets"]
+        choice: ["quotes", "curly brackets", "parentheses", "space brackets"],
+        answer: "curly brackets"
     },
     {
         question: "The Arrays in JavaScript can be used to store _____",
-        choice: ["numbers and strings", "other arrays", "all of the above"]
+        choice: ["numbers and strings", "other arrays", "all of the above"],
+        answer: "all of the above"
     },
     {
         question: "String values must be enclosed within __ when being assigned to variables.",
-        choice: ["commas", "curly brackets", "quotes", "parentheses"]
+        choice: ["commas", "curly brackets", "quotes", "parentheses"],
+        answer: "quotes"
     },
     {
         question: "A very useful tool used during development and debugging for printing content to the debugger is",
-        choice: ["JavaScript", "terminal/bash", "for loops", "console log"]
+        choice: ["JavaScript", "terminal/bash", "for loops", "console log"],
+        answer: "console log"
     },
     {
         question: "What is a variable used for ?",
-        answer: ["Store data", "Create functions", "Style HTML", "Create elements"]
+        choice: ["Store data", "Create functions", "Style HTML", "Create elements"]
+        answer: "Store data"
     }
 ]
 startButton.addEventListener("click", startQuiz);
 startButton.addEventListener("click", setTime);
 
+//This allows the initial welcome info to "disappear" after the start button is
 function startQuiz() {
     startButton.classList.add("hide")
     introText.classList.add("hide")
@@ -38,18 +45,21 @@ function startQuiz() {
     setNextQuestion()
 };
 
-
+//This is for the timer to begin running after "start quiz" button is clicked
 function setTime() {
     var quizTimer = setInterval(function () {
-        document.getElementById("countdown").innerHTML = countDown;
-        countDown--;
-        countDown.textContent = "" + countDown;
-        if (countDown === 0) {
-            alert("Time is up!");
+        document.getElementById("countdown").innerHTML = timeLeft;
+        timeLeft -= 1;
+        timeLeft.textContent = "" + timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timeLeft);
+            document.getElementById("countdown").innerHTML = "Time is up";
         }
-    }, 1000);
+    }, 1000)
 }
 
-function setNextQuestion() {
 
+function setNextQuestion() {
+    var questionArray
 }
