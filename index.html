@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timed Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="styles_cq.css">
-    <script src="script_quiz.js" defer></script>
+    <script src="script.js" defer></script>
+
 </head>
 
 <body>
     <header>
-        <h3>Highscore</h3>
+        <h3 id="score">Highscore</h3>
         <h3 id="countdown"></h3>
     </header>
 
@@ -25,15 +26,7 @@
         </div>
 
         <div id="question-container" class="hide">
-            <div id="question">
-                <h2>Question</h2>
-            </div>
-            <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-            </div>
+
         </div>
 
         <div class="controls">
@@ -44,42 +37,3 @@
 </body>
 
 </html>
-
-<!--you can load everything on the page and then hide all the question
-<containere div>
-    <div = "main">
-    ul id="ulOne"
-    li
-    li
-    li
-   
-    ul id = "ul2"class = "hide" 
-    li
-    li
-    li
-    </div>
-var ulOne = document.querySelector(#ulOne); This is at the top of page
- ulOne.setAttribute("class", "");
-
-var ulTwo = do as the first one This is at the top of page
-ulTwo.setAttribute("class", "");
-
-put variables into an array = [ulOne, ulTwo]
-
-
-Arr [
-{
-Title: "title"
-choice:["choice A", "choice B"
-]
-}
-]
-
-for (var num =0; num<Arr.length; num++)
-var ul = document.createElement("ul");
-var title = Arr[count].Title;
-var choices = Arr[count].choice;
-for (var countB =0; countB<choices.length; countB++)
-document.createElement("li")
- main.append(li);
--->
