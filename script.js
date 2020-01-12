@@ -1,39 +1,40 @@
 var startButton = document.getElementById("start-btn");
 var introText = document.getElementById("welcome");
 var elQuestion = document.getElementById("question-container");
-var timeLeft = 75;
+var timeLeft = 90;
 var currentQuestion = 0;
-/* var quizArray = [{
-    question: "Commonly used data types do Not include:",
-    choice: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
+var currentAnswer = 0;
+var quizArray = [{
+    question: "The most commonly used fixative for skin biopsies is:",
+    choice: ["Michel's", "Schiff's", "Formalin", "AZF"],
+    answer: "formalin"
 },
 {
-    question: "The condition in an if/else statement is enclosed within _____",
-    choice: ["quotes", "curly brackets", "parentheses", "space brackets"],
-    answer: "curly brackets"
+    question: "When embedding, _______ cuts are used to help the epidermis lay flat.",
+    choice: ["saline", "relaxing", "notch", "filleting"],
+    answer: "relaxing"
 },
 {
-    question: "The Arrays in JavaScript can be used to store _____",
-    choice: ["numbers and strings", "other arrays", "all of the above"],
-    answer: "all of the above"
+    question: "______ is used to stain cell nuclei, while ______ is used for the cytoplasm ",
+    choice: ["Hematoxylin, Eosin", "Bluing, Eosin", "Eosin, Hematoxylin", "Water, Nuclear Fast Red"],
+    answer: "Hematoxylin, Eosin"
 },
 {
-    question: "String values must be enclosed within __ when being assigned to variables.",
-    choice: ["commas", "curly brackets", "quotes", "parentheses"],
-    answer: "quotes"
+    question: "What angle should the epidermis be to the knife to ensure a cleaner cut?",
+    choice: ["50", "90", "180", "45"],
+    answer: "45"
 },
 {
-    question: "A very useful tool used during development and debugging for printing content to the debugger is",
-    choice: ["JavaScript", "terminal/bash", "for loops", "console log"],
-    answer: "console log"
+    question: "How is a shave biopsy embedded?",
+    choice: ["on edge", "on end", "dermis flat down on chuck surface", "all of the above"],
+    answer: "on edge"
 },
 {
-    question: "What is a variable used for ?",
-    choice: ["Store data", "Create functions", "Style HTML", "Create elements"],
-    answer: "Store data"
+    question: "What is the acceptable range of microns for each section?",
+    choice: ["20-30uM", "3-6uM", "6-9uM", "10-15uM"],
+    answer: "6-9uM"
 }
-] */
+]
 
 startButton.addEventListener("click", startQuiz);
 startButton.addEventListener("click", setTime);
@@ -67,6 +68,7 @@ var renderQuestions = function () {
             var li = document.createElement("li");
             li.textContent = choiceList;
             ul.append(li);
+
         });
         // adding the created elements to the DOM
         div.append(hTwo);
