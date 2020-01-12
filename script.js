@@ -3,7 +3,7 @@ var introText = document.getElementById("welcome");
 var elQuestion = document.getElementById("question-container");
 var timeLeft = 75;
 var currentQuestion = 0;
-var quizArray = [{
+/* var quizArray = [{
     question: "Commonly used data types do Not include:",
     choice: ["strings", "booleans", "alerts", "numbers"],
     answer: "alerts"
@@ -33,11 +33,12 @@ var quizArray = [{
     choice: ["Store data", "Create functions", "Style HTML", "Create elements"],
     answer: "Store data"
 }
-]
+] */
 
 startButton.addEventListener("click", startQuiz);
 startButton.addEventListener("click", setTime);
 var main = document.getElementById("question-container");
+
 
 //This allows the initial welcome info to "disappear" after the start button is
 function startQuiz() {
@@ -47,29 +48,34 @@ function startQuiz() {
 
 };
 
-quizArray.forEach(function (question, indexQuestion) {
-    var div = document.createElement("div");
+var renderQuestions = function () {
+    //This gets the questions from the array
+    quizArray.forEach(function (question, indexQuestion) {
+        var div = document.createElement("div");
 
-    if (currentQuestion !== indexQuestion) {
-        div.setAttribute("class", "hide");
-    }
+        if (currentQuestion !== indexQuestion) {
+            div.setAttribute("class", "hide");
+        }
+        //Creating an h2 tag dynamically
+        var hTwo = document.createElement("h2");
+        hTwo.textContent = "Question: " + question.question;
+        //creating a ul tag dynamically
+        var ul = document.createElement("ul");
 
-    var hTwo = document.createElement("h2");
-    hTwo.textContent = "Question: " + question.question;
-
-    var ul = document.createElement("ul");
-
-    question.choice.forEach(function (choiceList) {
-        var li = document.createElement("li");
-        li.textContent = choiceList;
-        ul.append(li);
+        //This is getting the answers from the array
+        question.choice.forEach(function (choiceList) {
+            var li = document.createElement("li");
+            li.textContent = choiceList;
+            ul.append(li);
+        });
+        // adding the created elements to the DOM
+        div.append(hTwo);
+        div.append(ul);
+        main.append(div);
     });
+}
+renderQuestions();
 
-    div.append(hTwo);
-    div.append(ul);
-    main.append(div);
-
-});
 
 
 //This is for the timer to begin running after "start quiz" button is clicked
@@ -78,7 +84,7 @@ function setTime() {
         document.getElementById("countdown").innerHTML = timeLeft;
         timeLeft -= 1;
         timeLeft.textContent = "" + timeLeft;
-
+        //preventing the timer from going into negative numbers
         if (timeLeft <= 0) {
             clearInterval(timeLeft);
             document.getElementById("countdown").innerHTML = "Time is up";

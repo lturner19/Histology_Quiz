@@ -1,7 +1,3 @@
-var startButton = document.getElementById("start-btn");
-var introText = document.getElementById("welcome");
-var elQuestion = document.getElementById("question-container");
-var timeLeft = 75;
 var questionArray = [
     {
         question: "Commonly used data types do Not include:",
@@ -30,36 +26,7 @@ var questionArray = [
     },
     {
         question: "What is a variable used for ?",
-        choice: ["Store data", "Create functions", "Style HTML", "Create elements"]
+        choice: ["Store data", "Create functions", "Style HTML", "Create elements"],
         answer: "Store data"
     }
 ]
-startButton.addEventListener("click", startQuiz);
-startButton.addEventListener("click", setTime);
-
-//This allows the initial welcome info to "disappear" after the start button is
-function startQuiz() {
-    startButton.classList.add("hide")
-    introText.classList.add("hide")
-    elQuestion.classList.remove("hide")
-    setNextQuestion()
-};
-
-//This is for the timer to begin running after "start quiz" button is clicked
-function setTime() {
-    var quizTimer = setInterval(function () {
-        document.getElementById("countdown").innerHTML = timeLeft;
-        timeLeft -= 1;
-        timeLeft.textContent = "" + timeLeft;
-
-        if (timeLeft <= 0) {
-            clearInterval(timeLeft);
-            document.getElementById("countdown").innerHTML = "Time is up";
-        }
-    }, 1000)
-}
-
-
-function setNextQuestion() {
-    var questionArray
-}
