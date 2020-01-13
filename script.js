@@ -1,61 +1,48 @@
-var startButton = document.getElementById("start-btn");
-var introText = document.getElementById("welcome");
-var elQuestion = document.getElementById("question-container");
-var timeLeft = 90;
-var currentQuestion = 0;
-var currentAnswer = 0;
-var quizArray = [{
-    question: "The most commonly used fixative for skin biopsies is:",
-    choice: ["Michel's", "Schiff's", "Formalin", "AZF"],
-    answer: "formalin"
-},
-{
-    question: "When embedding, _______ cuts are used to help the epidermis lay flat.",
-    choice: ["saline", "relaxing", "notch", "filleting"],
-    answer: "relaxing"
-},
-{
-    question: "______ is used to stain cell nuclei, while ______ is used for the cytoplasm ",
-    choice: ["Hematoxylin, Eosin", "Bluing, Eosin", "Eosin, Hematoxylin", "Water, Nuclear Fast Red"],
-    answer: "Hematoxylin, Eosin"
-},
-{
-    question: "What angle should the epidermis be to the knife to ensure a cleaner cut?",
-    choice: ["50", "90", "180", "45"],
-    answer: "45"
-},
-{
-    question: "How is a shave biopsy embedded?",
-    choice: ["on edge", "on end", "dermis flat down on chuck surface", "all of the above"],
-    answer: "on edge"
-},
-{
-    question: "What is the acceptable range of microns for each section?",
-    choice: ["20-30uM", "3-6uM", "6-9uM", "10-15uM"],
-    answer: "6-9uM"
-}
-]
+const startButton = document.getElementById("start-btn");
+const introText = document.getElementById("welcome");
+const questionEl = document.getElementById("question-container");
+const commentEl = document.getElementById("comment");
+let timeLeft = 75;
+let currentQuestion = 0;
+let score = "";
+//var scoreData = [];
+
 
 startButton.addEventListener("click", startQuiz);
-startButton.addEventListener("click", setTime);
-var main = document.getElementById("question-container");
+startButton.addEventListener("click", startTimer);
+
 
 
 //This allows the initial welcome info to "disappear" after the start button is
 function startQuiz() {
     startButton.classList.add("hide")
     introText.classList.add("hide")
-    elQuestion.classList.remove("hide")
-
+    questionEl.classList.remove("hide")
+    renderQuestions()
 };
 
-var renderQuestions = function () {
+//This is for the timer to begin running after "start quiz" button is clicked
+function startTimer() {
+    let quizTimer = setInterval(function () {
+        document.getElementById("countdown").innerHTML = timeLeft;
+        timeLeft -= 1;
+        timeLeft.textContent = "" + timeLeft;
+        //preventing the timer from going into negative numbers
+        if (timeLeft <= 0) {
+            clearInterval(timeLeft);
+            document.getElementById("countdown").innerHTML = "Time is up";
+        }
+    }, 1000)
+}
+
+
+const renderQuestions = function () {
     //This gets the questions from the array
     quizArray.forEach(function (question, indexQuestion) {
         var div = document.createElement("div");
 
         if (currentQuestion !== indexQuestion) {
-            div.setAttribute("class", "hide");
+            div.classList.add("hide");
         }
         //Creating an h2 tag dynamically
         var hTwo = document.createElement("h2");
@@ -67,29 +54,54 @@ var renderQuestions = function () {
         question.choice.forEach(function (choiceList) {
             var li = document.createElement("li");
             li.textContent = choiceList;
+            li.setAttribute("data-answer", question.answer);
+            li.onclick = nextQuestion;
             ul.append(li);
 
         });
         // adding the created elements to the DOM
         div.append(hTwo);
         div.append(ul);
-        main.append(div);
+        questionEl.append(div);
     });
 }
-renderQuestions();
 
+function nextQuestion() {
+    var rightAnswer = this.getAttribute("data-answer")
+    var choiceLi = this.textContent
 
-
-//This is for the timer to begin running after "start quiz" button is clicked
-function setTime() {
-    var quizTimer = setInterval(function () {
-        document.getElementById("countdown").innerHTML = timeLeft;
-        timeLeft -= 1;
-        timeLeft.textContent = "" + timeLeft;
-        //preventing the timer from going into negative numbers
-        if (timeLeft <= 0) {
-            clearInterval(timeLeft);
-            document.getElementById("countdown").innerHTML = "Time is up";
-        }
-    }, 1000)
+    if (rightAnswer === choiceLi) {
+        commentEl.textContent = "Correct";
+        setTimeout(() => {
+            questionEl.innerHTML = "";
+            currentQuestion++;
+            commentEl.innerHTML = "";
+            renderQuestions();
+        }, 1000);
+    }
+    else {
+        commentEl.textContent = "Wrong";
+        setTimeout(() => {
+            questionEl.innerHTML = "";
+            currentQuestion++;
+            commentEl.innerHTML = "";
+            timeLeft = timeLeft - 10;
+            renderQuestions();
+        }, 1000);
+    }
 }
+
+
+
+
+
+
+/* will need to use this to store the user's score and initials when they are finished w/quiz
+function scoreData () {
+    localStorage.setItem("scoreData", JSON.stringify (scoreData));
+
+}
+
+
+remember to use JSON.stringify(); to make an object / value into a stringify  &
+JSON.parse(); to parse the string */
