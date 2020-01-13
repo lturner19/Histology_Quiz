@@ -30,9 +30,22 @@
         </div>
 
         <div class="controls">
-            <button id="start-btn" class="start-btn btn">Start Quiz</button>
+            <button id="start-btn" class="start-button">Start Quiz</button>
         </div>
+
+        <div id="form-container" class="hide">
+            <h2>Congratulations you are done!</h2>
+            <p id="finalscore">Your final score is</p>
+            <form id=form-highscore>
+                <label for="initials">Enter initials</label>
+                <input type="text" id="name" placeholder="Enter Initials" />
+                <button id="btn">Submit</button>
+            </form>
+        </div>
+
+        <div id="comment"></div>
     </div>
+    <script src="questions.js"></script>
     <script src="script.js"></script>
 
 </body>
