@@ -39,7 +39,7 @@ a {
   margin-left: 80%;
 } 
 
-.container, .form-container {
+.container, #form-container {
     background-color: #ffffff;
     border: 2px solid whitesmoke;
     border-radius: 5px;
@@ -48,27 +48,18 @@ a {
     padding: 10px;
     box-shadow: 0 0 5px 2px;
 }
-.form-container{
 
- margin-top: 20%;
-}
 
 h1 {
     margin: 20px;
-    font-size: 40px;
-    
+    font-size: 40px;  
 }
 
-p {
-    font-size: 20px;
-    
+#comment, p, ul{
+    font-size: 20px; 
+    font-weight: bold;
 }
 
-ul{
-    font-size: 23px;
-    font-weight: bolder;
- 
-}
 
  li {
     display: grid;
@@ -80,31 +71,20 @@ ul{
     border: 1px #e99678;
 } 
 
-.btn {
-    background-color: powderblue;
+.start-button {
+    background-color: #e99678;
     border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 20px;
     padding: 5px 10px;
     outline: none;
     font-size: 20px;
-    font-weight: bold;
-}
-
-.start-btn {
-    background-color: #e99678;
-    padding: 10px 20px;
-    margin-top: 20px;
 }
 
 .btn:hover {
     border-color: grey;
 }
 
-.controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
- 
 .hide {
     display: none;
 }
