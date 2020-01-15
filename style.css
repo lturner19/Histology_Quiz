@@ -33,10 +33,11 @@ h3, nav {
 
 a {
     color: black;
+    text-decoration: none;
 }
 
 #countdown {
-  margin-left: 80%;
+margin: 0 auto;
 } 
 
 .container, #form-container {
@@ -49,6 +50,13 @@ a {
     box-shadow: 0 0 5px 2px;
 }
 
+#form-container {
+    margin-top: 20%;
+}
+
+#name{
+    margin: 10px 0px 20px 0px;
+}
 
 h1 {
     margin: 20px;
@@ -59,7 +67,6 @@ h1 {
     font-size: 20px; 
     font-weight: bold;
 }
-
 
  li {
     display: grid;
