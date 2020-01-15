@@ -40,7 +40,7 @@ a {
 margin: 0 auto;
 } 
 
-.container, #form-container {
+.container, .form-container {
     background-color: #ffffff;
     border: 2px solid whitesmoke;
     border-radius: 5px;
@@ -50,8 +50,8 @@ margin: 0 auto;
     box-shadow: 0 0 5px 2px;
 }
 
-#form-container {
-    margin-top: 20%;
+.form-container {
+    margin-top: 15%;
 }
 
 #name{
@@ -68,11 +68,14 @@ h1 {
     font-weight: bold;
 }
 
+ul{
+    padding: 0px;
+}
+
  li {
     display: grid;
-    padding:5px;
     align-items: center;
-    max-width: 80%;
+    max-width: 70%;
     margin: 10px auto;
     background-color:#e99678;
     border: 1px #e99678;
