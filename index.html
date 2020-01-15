@@ -19,13 +19,14 @@
     <div class="container">
         <div id="welcome" class="intro">
             <h1>Histology Quiz Challenge</h1>
-            <p>Welcome to a quiz for Histologists.</p>
-            <p>Try to answer the following questions within the time limit.
-                <p>Incorrect answers will penalize your time by decreasing the timer by 10 seconds!</p>
-                <p>To begin, press Start.</p>
+            <p>Welcome to a quiz for Histology Professionals.</p>
+            <p>Try to answer the following questions as quickly as you can.
+                <p>Incorrect answers will penalize you by decreasing the timer by 10 seconds!</p>
+                <p>To begin, press Start Quiz.</p>
         </div>
 
         <div id="question-container" class="hide">
+            <p></p>
 
         </div>
 
@@ -33,15 +34,13 @@
             <button id="start-btn" class="start-button">Start Quiz</button>
         </div>
 
-        <div id="form-container" class="hide">
-            <h2>Congratulations you are done!</h2>
-            <p id="finalscore">Your final score is</p>
-            <form id=form-highscore>
-                <label for="initials">Enter initials</label>
-                <input type="text" id="name" placeholder="Enter Initials" />
-                <button id="btn">Submit</button>
-            </form>
-        </div>
+        <form id="form" class="hide">
+            <h2>Quiz Over</h2>
+            <p id="finalscore"></p>
+            <label for="initials">Enter initials</label>
+            <input type="text" id="name" placeholder="Enter Initials" />
+            <button id="btn">Submit</button>
+        </form>
 
         <div id="comment"></div>
     </div>
