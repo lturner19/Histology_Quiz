@@ -3,15 +3,18 @@ const introText = document.getElementById("welcome");
 const questionEl = document.getElementById("question-container");
 const commentEl = document.getElementById("comment");
 const quizScore = document.getElementById("form");
-const userScore = document.getElementById("finalscore")
-let timeLeft = 75;
+const scoreSubmit = document.getElementById("submit-btn");
+const highscorePage = document.getElementById("score-page");
+const userScore = document.getElementById("finalscore");
+let initialsInput = document.getElementById("initials");
+timeLeft = 75;
 let currentQuestion = 0;
 let score = 0;
 
-//var scoreData = [];
 
 startButton.addEventListener("click", startQuiz); // initiates startQuiz function
 startButton.addEventListener("click", startTimer);
+//highscorePage.onclick = ;
 
 
 //This allows the initial welcome info to "disappear" after the start button is clicked
@@ -24,10 +27,12 @@ function startQuiz() {
 
 //This intiates the timer to begin running after "start quiz" button is clicked
 function startTimer() {
+    //decrements the timer
     let quizTimer = setInterval(function () {
         document.getElementById("countdown").innerHTML = timeLeft;
         timeLeft -= 1;
         timeLeft.textContent = "" + timeLeft;
+
         //preventing the timer from going into negative numbers
         if (timeLeft <= 0) {
             clearInterval(quizTimer);
@@ -53,6 +58,7 @@ const renderQuestions = function () {
         //Creating an h2 tag dynamically
         var hTwo = document.createElement("h2");
         hTwo.textContent = "Question: " + question.question;
+
         //creating a ul tag dynamically
         var ul = document.createElement("ul");
 
@@ -72,7 +78,7 @@ const renderQuestions = function () {
     });
 }
 
-
+//Function below validates answers and populates next question.
 function nextQuestion() {
     var rightAnswer = this.getAttribute("data-answer")
     var choiceLi = this.textContent
@@ -81,6 +87,7 @@ function nextQuestion() {
     if (rightAnswer === choiceLi) {
         commentEl.textContent = "Correct";
         currentQuestion++;
+
         //allows the "correct" to show up for 1 second after user clicks correct choice
         setTimeout(() => {
             questionEl.innerHTML = "";
@@ -103,14 +110,25 @@ function nextQuestion() {
 }
 
 function showSummary() {
-    console.log("showSummary");
     var userMessage = "Your score is " + score
     userScore.textContent = userMessage;
     questionEl.classList.add("hide");
     quizScore.classList.remove("hide")
 }
 
-
+scoreSubmit.addEventListener("click", function () {
+    var user = {
+        monogram: initialsInput.value.trim(),
+        timer: score
+    };
+    console.log(user);
+    if (user.monogram === "") {
+        commentEl.innerHTML = "";
+        commentEl.textContent = "Error, initials cannot be blank";
+    } else {
+        localStorage.setItem("user", JSON.stringify(user));
+    }
+})
 
 
 /*
