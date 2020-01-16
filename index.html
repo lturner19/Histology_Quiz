@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Timed Code Quiz</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-
-
 </head>
 
 <body>
     <header>
-        <nav id="score"><a style="text-decoration: none;" href="highscore.html">Highscore</a></nav>
+        <button id="score-page">Highscore</button>
         <h3 id="countdown"></h3>
     </header>
 
@@ -24,10 +22,8 @@
                 <p>Incorrect answers will penalize you by decreasing the timer by 10 seconds!</p>
                 <p>To begin, press Start Quiz.</p>
         </div>
-
         <div id="question-container" class="hide">
             <p></p>
-
         </div>
 
         <div class="controls">
@@ -37,10 +33,18 @@
         <form id="form" class="hide">
             <h2>Quiz Over</h2>
             <p id="finalscore"></p>
-            <label for="initials">Enter initials</label>
-            <input type="text" id="name" placeholder="Enter Initials" />
-            <button id="btn">Submit</button>
+            <label for="initials">Enter Initials</label>
+            <input type="text" id="initials" placeholder="Enter Initials" />
+            <button id="submit">Submit</button>
         </form>
+
+        <div id="score-list" class="hide">
+            <h2>Highscores</h2>
+            <ul id=user-list></ul>
+            <br>
+            <button id="go-btn btn">Go Back</button>
+            <button id="clear-btn btn">Clear Highscores</button>
+        </div>
 
         <div id="comment"></div>
     </div>
