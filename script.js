@@ -3,18 +3,21 @@ const introText = document.getElementById("welcome");
 const questionEl = document.getElementById("question-container");
 const commentEl = document.getElementById("comment");
 const quizScore = document.getElementById("form");
-const scoreSubmit = document.getElementById("submit-btn");
-const highscorePage = document.getElementById("score-page");
+const scoreSubmit = document.getElementById("submit");
 const userScore = document.getElementById("finalscore");
 let initialsInput = document.getElementById("initials");
+const highscorePage = document.getElementById("score-list");
+const ul = document.getElementById("user-list");
+let clearButton = document.getElementById("clear-btn btn");
+const goButton = document.getElementById("go-btn btn");
+
 timeLeft = 75;
 let currentQuestion = 0;
 let score = 0;
-
+let scoreArray = [];
 
 startButton.addEventListener("click", startQuiz); // initiates startQuiz function
 startButton.addEventListener("click", startTimer);
-//highscorePage.onclick = ;
 
 
 //This allows the initial welcome info to "disappear" after the start button is clicked
@@ -25,7 +28,7 @@ function startQuiz() {
     renderQuestions()
 };
 
-//This intiates the timer to begin running after "start quiz" button is clicked
+//This initiates the timer to begin running after "start quiz" button is clicked
 function startTimer() {
     //decrements the timer
     let quizTimer = setInterval(function () {
@@ -41,7 +44,13 @@ function startTimer() {
         }
     }, 1000)
 }
-
+var highscoreButton = document.getElementById("score-page");
+highscoreButton.addEventListener("click", function () {
+    commentEl.innerHTML = "Please finish quiz to see highscores!"
+    setTimeout(() => {
+        commentEl.innerHTML = "";
+    }, 1000);
+})
 const renderQuestions = function () {
     if (currentQuestion === quizArray.length) {
         score = timeLeft;
@@ -102,42 +111,63 @@ function nextQuestion() {
             questionEl.innerHTML = "";
             currentQuestion++;
             commentEl.innerHTML = "";
-            //decrements timer 10 seconds
-            timeLeft = timeLeft - 10;
+            //decrements timer 15 seconds
+            timeLeft = timeLeft - 15;
             renderQuestions();
         }, 1000);
     }
 }
 
+//allows the timeLeft to be shown as score and di
 function showSummary() {
     var userMessage = "Your score is " + score
     userScore.textContent = userMessage;
     questionEl.classList.add("hide");
-    quizScore.classList.remove("hide")
+    quizScore.classList.remove("hide");
 }
 
-scoreSubmit.addEventListener("click", function () {
-    var user = {
-        monogram: initialsInput.value.trim(),
-        timer: score
-    };
-    console.log(user);
-    if (user.monogram === "") {
-        commentEl.innerHTML = "";
-        commentEl.textContent = "Error, initials cannot be blank";
-    } else {
-        localStorage.setItem("user", JSON.stringify(user));
+
+function renderScores() {
+    ul.innerHTML = "";
+
+    // Renders a new li for each score
+    for (var i = 0; i < scoreArray.length; i++) {
+        var array = scoreArray[i];
+        var li = document.createElement("li");
+        li.textContent = array;
+        li.setAttribute("data-index", i);
+        ul.appendChild(li);
+
     }
+}
+
+//Send scores to local storage
+scoreSubmit.addEventListener("click", function (event) {
+    event.preventDefault(); //prevents default submit action, not sending data to server
+    var monogram = initialsInput.value.trim();
+
+    if (monogram === "") { //forces the user to input initials
+        return;
+    }
+    scoreArray.push(monogram + score); //pushes scores to empty array.
+    var storeScores = localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+    rankingPage();
+})
+//Allows scores to be returned from local storage
+function rankingPage() {
+    renderScores();
+    quizScore.classList.add("hide");
+    highscorePage.classList.remove("hide");
+    var storedScores = JSON.parse(localStorage.getItem("scoreArray")) || [];
+}
+
+//goes back to start quiz page
+goButton.addEventListener("click", function () {
+    window.location.assign("index.html");
 })
 
-
-/*
-will need to use this to store the user's time and initials when they are finished w/quiz
-function scoreData () {
-    localStorage.setItem("scoreData", JSON.stringify (scoreData));
-
+/* function clearScores() {
+    localStorage.clear();
+    ul.innerHTML = "";
 }
-
-
-remember to use JSON.stringify(); to make an object / value into a stringify  &
-JSON.parse(); to parse the string  */
+clearButton = addEventListener("click", clearScores); */
