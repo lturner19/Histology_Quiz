@@ -25,15 +25,13 @@ h3 {
     border: 1px solid grey;
     border-radius: 5px;
     display: inline-block;
+    margin: 0 auto;
     max-width: 30%;
     max-height: 20%; 
     padding: 20px;
     box-shadow: 0 0 15px 2px;
 }
 
-#countdown {
-margin: 0 auto;
-} 
 
 .container, .form-container {
     background-color: #ffffff;
@@ -76,7 +74,7 @@ ul{
     border: 1px #e99678;
 } 
 
-.start-button {
+.start-button, button{
     background-color: #e99678;
     border-radius: 5px;
     padding: 10px 20px;
@@ -86,6 +84,17 @@ ul{
     font-size: 20px;
 }
 
+#score-page{
+    font-weight: bolder;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 5px;
+    display: inline-block;
+    max-width: 30%;
+    max-height: 20%; 
+    padding: 20px;
+    box-shadow: 0 0 15px 2px;
+}
 .btn:hover {
     border-color: grey;
 }
