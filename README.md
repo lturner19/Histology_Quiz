@@ -28,7 +28,6 @@ The code for the timer was provided by w3schools.com.
 1. Begin quiz
 ![image](assets/Start_quiz.jpg)
 
-
 2. Preview of questions with timer
 ![image](assets/quiz.jpg)
 

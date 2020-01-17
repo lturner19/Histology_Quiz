@@ -3,11 +3,12 @@ const introText = document.getElementById("welcome");
 const questionEl = document.getElementById("question-container");
 const commentEl = document.getElementById("comment");
 const quizScore = document.getElementById("form");
+const ul = document.getElementById("user-list");
 const scoreSubmit = document.getElementById("submit");
 const userScore = document.getElementById("finalscore");
 let initialsInput = document.getElementById("initials");
 const highscorePage = document.getElementById("score-list");
-const ul = document.getElementById("user-list");
+let maxScore = 5;
 let clearButton = document.getElementById("clear-btn btn");
 const goButton = document.getElementById("go-btn btn");
 
@@ -65,6 +66,7 @@ const renderQuestions = function () {
 
         var div = document.createElement("div");
 
+        //compares the question and choice in the array to see if they have the same index value, if not the question/choices not shown
         if (currentQuestion !== indexQuestion) {
             div.classList.add("hide");
         }
@@ -75,7 +77,7 @@ const renderQuestions = function () {
         //creating a ul tag dynamically
         var ul = document.createElement("ul");
 
-        //This is getting the answers from the array
+        //This is getting the answers from the quiz array
         question.choice.forEach(function (choiceList) {
             var li = document.createElement("li");
             li.textContent = choiceList;
@@ -130,10 +132,9 @@ function showSummary() {
     quizScore.classList.remove("hide");
 }
 
-
+//dynamically creates li's for the users' scores to be shown
 function renderScores() {
     ul.innerHTML = "";
-
     // Renders a new li for each score
     for (var i = 0; i < scoreArray.length; i++) {
         var array = scoreArray[i];
@@ -141,38 +142,40 @@ function renderScores() {
         li.textContent = array;
         li.setAttribute("data-index", i);
         ul.appendChild(li);
-
     }
 }
 
-//Send scores to local storage
+//Send scores to local storage when submit button is clicked
 scoreSubmit.addEventListener("click", function (event) {
-    event.preventDefault(); //prevents default submit action, not sending data to server
+    event.preventDefault(); //prevents default submit action; not sending data to server
     var monogram = initialsInput.value.trim();
 
     if (monogram === "") { //forces the user to input initials
         return;
     }
-    scoreArray.push(monogram + score); //pushes scores to empty array.
+    scoreArray.push(monogram + ' ' + score); //pushes scores to empty array.
     var storeScores = localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
     rankingPage();
 })
+
 //Allows scores to be returned from local storage
 function rankingPage() {
     renderScores();
     quizScore.classList.add("hide");
     highscorePage.classList.remove("hide");
-    var storedScores = JSON.parse(localStorage.getItem("scoreArray")) || [];
+    var retrieveScores = JSON.parse(localStorage.getItem("scoreArray")) || [];
 }
+
+//goes back to the start page to replay quiz
 goButton.addEventListener("click", function () {
     startQuiz();
     highscorePage.classList.add("hide");
     introText.classList.remove("hide");
     startButton.classList.remove("hide");
     questionEl.classList.add("hide");
-
 })
 
+//clears the local storage of highscore when clear button is clicked
 clearButton.addEventListener("click", function () {
     localStorage.clear();
     ul.innerHTML = "";
