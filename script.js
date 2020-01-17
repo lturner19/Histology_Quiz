@@ -22,10 +22,14 @@ startButton.addEventListener("click", startTimer);
 
 //This allows the initial welcome info to "disappear" after the start button is clicked
 function startQuiz() {
-    startButton.classList.add("hide")
-    introText.classList.add("hide")
-    questionEl.classList.remove("hide")
-    renderQuestions()
+    startButton.classList.add("hide");
+    introText.classList.add("hide");
+    questionEl.classList.remove("hide");
+    currentQuestion = 0;
+    questionEl.innerHTML = "";
+    timeLeft = 75;
+    renderQuestions();
+
 };
 
 //This initiates the timer to begin running after "start quiz" button is clicked
@@ -160,14 +164,16 @@ function rankingPage() {
     highscorePage.classList.remove("hide");
     var storedScores = JSON.parse(localStorage.getItem("scoreArray")) || [];
 }
-
-//goes back to start quiz page
 goButton.addEventListener("click", function () {
-    window.location.assign("index.html");
+    startQuiz();
+    highscorePage.classList.add("hide");
+    introText.classList.remove("hide");
+    startButton.classList.remove("hide");
+    questionEl.classList.add("hide");
+
 })
 
-/* function clearScores() {
+clearButton.addEventListener("click", function () {
     localStorage.clear();
     ul.innerHTML = "";
-}
-clearButton = addEventListener("click", clearScores); */
+})
