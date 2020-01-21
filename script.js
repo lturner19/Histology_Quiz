@@ -177,6 +177,6 @@ goButton.addEventListener("click", function () {
 
 //clears the local storage of highscore when clear button is clicked
 clearButton.addEventListener("click", function () {
-    localStorage.clear();
-    ul.innerHTML = "";
+    localStorage.removeItem("scoreArray");
+    ul.textContent = ""
 })

@@ -6,6 +6,7 @@
 body {
     padding: 0;
     margin: 0;
+    height: 100%;
     justify-content: center;
     text-align: center;
     background: url(https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1934&q=80);
@@ -41,6 +42,7 @@ h3 {
     margin: 0 auto;
     padding: 10px;
     box-shadow: 0 0 5px 2px;
+    position: relative;
 }
 
 .form-container {
@@ -103,3 +105,16 @@ ul{
     display: none;
 }
  
+footer {
+    background-color: #e99678;
+    opacity: 60%;
+    color: wheat;
+    font-size: 12px;
+    text-align: center;
+    border-top: 2px solid  wheat;
+    width: 100%;
+    height: 60px;
+    padding: 10px;
+    bottom: 0;
+    position: absolute;
+  }
