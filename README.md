@@ -1,4 +1,4 @@
-# CODE QUIZ
+# HISTOLOGY QUIZ
 
 ## Introduction
 
